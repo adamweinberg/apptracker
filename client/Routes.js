@@ -4,6 +4,7 @@ import { Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import { me } from './store'
+import SearchInfo from './components/SearchInfo';
 
 const Routes = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,7 @@ const Routes = () => {
         <Switch>
           <Route path="/home" component={Home} />
           <Redirect to="/home" />
+          {/* <Route path='/search-info' component={SearchInfo} /> */}
         </Switch>
       ) : (
         <Switch>

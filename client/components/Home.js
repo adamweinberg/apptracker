@@ -1,12 +1,31 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getUser } from '../store/user'
+import Searches from './Searches'
+import SearchInfo from './SearchInfo'
 
 export const Home = () => {
-  const { username } = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  const { auth, user } = useSelector(state => state)
+
+  const [form, setForm] = useState(null)
+
+  useEffect(() => {
+    dispatch(getUser(auth.id))
+  }, [])
+
+  const getForm = () => {
+    if (!form) {
+      return <Searches setForm={setForm} />
+    }
+    else {
+      let searchId = form
+      return <SearchInfo searchId={searchId} />}
+  }
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      {user ? getForm() : <span>loading</span>}
     </div>
   )
 }
