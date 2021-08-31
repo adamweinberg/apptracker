@@ -30,7 +30,7 @@ const Job = db.define('job', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isIn: [['applied', 'rejected', 'assessment', 'phone screen', 'onsite interview', 'received offer', 'accepted offer']]
+      isIn: [['applied', 'rejected', 'assessment', 'phone screen', 'onsite interview', 'received offer', 'accepted offer', 'ghosted by employer']]
     }
   },
   coverLetterUrl: {
