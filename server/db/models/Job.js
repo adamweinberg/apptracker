@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const applicationStatuses = require('../../../script/applicationStatuses')
 
 const Job = db.define('job', {
   title: {
@@ -30,7 +31,7 @@ const Job = db.define('job', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isIn: [['applied', 'rejected', 'assessment', 'phone screen', 'onsite interview', 'received offer', 'accepted offer', 'ghosted by employer']]
+      isIn: [applicationStatuses]
     }
   },
   coverLetterUrl: {

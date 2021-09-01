@@ -5,11 +5,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import userReducer from './user'
 import searchReducer from './search'
+import jobReducer from './job'
 
 const reducer = combineReducers({
   auth,
   user: userReducer,
-  search: searchReducer
+  search: searchReducer,
+  job: jobReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
