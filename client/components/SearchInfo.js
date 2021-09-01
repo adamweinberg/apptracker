@@ -49,7 +49,7 @@ const SearchInfo = (props) => {
       }
       <button onClick={openNewJobModal}>Add Job to Search</button>
       <Popover open={newJobOpen} onClose={() => setNewJobOpen(false)} anchorEl={document.getElementById('search-container')} anchorOrigin={{vertical: 'center', horizontal: 'center'}}style={{height:'200px', width:'200px'}}>
-        <NewJobForm />
+        <NewJobForm setNewJobOpen={setNewJobOpen}/>
       </Popover>
     </div>
   )

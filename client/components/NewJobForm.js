@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 const applicationStatuses = require('../../script/applicationStatuses')
 import { addJob } from '../store/job'
 
-const NewJobForm = () => {
-  const dispatch = useDispatch
+const NewJobForm = (props) => {
+  const { setNewJobOpen } = props
+
+  const dispatch = useDispatch()
   const { search } = useSelector(state => state)
 
   const [jobInfo, setJobInfo] = useState({
     company: '',
     title: '',
     applicationDate: '',
-    status: '',
+    status: 'applied',
     searchId: search.id
   })
   const jobRef = useRef(jobInfo)
@@ -29,12 +31,12 @@ const NewJobForm = () => {
 
   const handleSubmit = () => {
     event.preventDefault()
-    //console.log(jobRef.current)
     dispatch(addJob(jobRef.current))
+    setNewJobOpen(false)
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label htmlFor='fcompany'>Company: </label>
       <input type='text' id='fcompany' name='company' onChange={handleChange} />
       <label htmlFor='ftitle'>Job Title: </label>
@@ -47,7 +49,7 @@ const NewJobForm = () => {
           <option key={index} value={status}>{status}</option>
         ))}
       </select>
-      <input type='submit' value='Submit' onClick={handleSubmit} />
+      <input type='submit' value='Submit' />
     </form>
   )
 }

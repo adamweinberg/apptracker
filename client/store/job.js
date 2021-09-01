@@ -15,8 +15,8 @@ const addedJob = (job) => {
 export const addJob = (job) => {
   return async dispatch => {
     try {
-      const newJob = await axios.post('/jobs', job)
-      dispatch(addedJob(newJob.data))
+      const {data: newJob} = await axios.post('/api/jobs', job)
+      dispatch(addedJob(newJob))
     } catch (error) {
       console.log(error)
     }
