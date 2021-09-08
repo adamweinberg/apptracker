@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getSearch } from '../store/search'
 import NewJobForm from './NewJobForm';
 import { Popover } from '@material-ui/core';
+import { deleteJob } from '../store/job';
 
 const SearchInfo = (props) => {
   const { searchId } = props
@@ -17,6 +18,12 @@ const SearchInfo = (props) => {
 
   const openNewJobModal = () => {
     setNewJobOpen(true)
+  }
+
+  const handleDeleteClick = (job) => {
+    dispatch(deleteJob(job)).then(
+      dispatch(getSearch(searchId))
+    )
   }
 
   return (
@@ -40,6 +47,7 @@ const SearchInfo = (props) => {
               <td>{job.title}</td>
               <td>{job.applicationDate}</td>
               <td>{job.status}</td>
+              <button onClick={() => handleDeleteClick(job)}>Delete Job</button>
             </tr>
           ))}
           </tbody>
