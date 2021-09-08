@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 const applicationStatuses = require('../../script/applicationStatuses')
 import { addJob } from '../store/job'
+import { getSearch } from '../store/search'
+
 
 const NewJobForm = (props) => {
   const { setNewJobOpen } = props
@@ -33,6 +35,7 @@ const NewJobForm = (props) => {
     event.preventDefault()
     dispatch(addJob(jobRef.current))
     setNewJobOpen(false)
+    dispatch(getSearch(search.id))
   }
 
   return (
